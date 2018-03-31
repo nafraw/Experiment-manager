@@ -51,11 +51,11 @@ classdef pathManager < handle
         end
        
         function index = getIndexByPurpose(obj, names)
-            obj.getIndexByNameFromProperty(names, 'purpose');
+            index = obj.getIndexByNameFromProperty(names, 'purpose');
         end
         
         function index = getIndexByGeneration(obj, names)
-            obj.getIndexByNameFromProperty(names, 'generatedBy');
+            index = obj.getIndexByNameFromProperty(names, 'generatedBy');
         end
         
         function index = getIndexByNameFromProperty(obj, names, property)
