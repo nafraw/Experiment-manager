@@ -1,7 +1,7 @@
 test
 
 function test
-    p = pathManager()
+    p = PathManager();
     p.addPath('test', 'test1', 'test2', true)
     p.test('paths')
 end

@@ -1,4 +1,4 @@
-classdef pathManager < handle
+classdef PathManager < handle
     %% Path manager
     % A class to manager data path (e.g. handle those processed files and
     % store information how to find them.
@@ -15,7 +15,7 @@ classdef pathManager < handle
     end
     
     methods (Access = public)
-        function obj = pathManager()
+        function obj = PathManager()
             obj.paths = {};
             obj.fileFormat = {};
             obj.purpose = {};
