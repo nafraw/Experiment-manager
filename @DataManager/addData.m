@@ -10,6 +10,9 @@ end
 nData = checkNumel(data);
 nFilenames = checkNumel(filenames);
 nNames = checkNumel(names);
+if nNames == 1 && iscell(data)
+    nData = 1;
+end
 nIdx = numel(indices);
 
 if nFilenames == 1 && nData ~= 1
@@ -19,7 +22,9 @@ if nFilenames == 1 && nData ~= 1
     filenames = mat2cell(filenames, ones(nData, 1));
 else
     % check consistency
-    assert(nData == nFilenames);
+    if ~storeAsCell(data, nData)
+        assert(nData == nFilenames);
+    end
 end
 % Check consistency of arguments
 assert(nData == nNames);
@@ -39,6 +44,10 @@ if obj.checkRoutine
     obj.checkData
 end
 obj.saveAccessTime();
+end
+
+function flag = storeAsCell(x, nData)
+flag = iscell(x) && nData == 1;
 end
 
 function nElement = checkNumel(x)
