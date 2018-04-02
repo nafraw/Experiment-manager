@@ -88,6 +88,10 @@ classdef PathManager < handle
         function index = getIndexByNameFromProperty(obj, names, property)
             evalc(['attribute = obj.', property, ';']);
             index = ismember(attribute, names);
+            if sum(index) == 0
+                index = [];
+                return;
+            end
             if iscell(names)
                 nName = numel(names);
             else
@@ -95,15 +99,30 @@ classdef PathManager < handle
             end
             if sum(index) ~= nName
                 index_missing = ~ismember(names, attribute(index));
-                error(['missing data: ', strjoin(names{index_missing})]);
+                if nName == 1 && ~iscell(names)
+                    error(['missing data: ', names]);
+                else
+                    error(['missing data: ', strjoin(names{index_missing})]);
+                end
             end
             index = find(index);
         end
         
-        function obj = addPath(obj, path, format, purpose, saveScriptName)
-            obj.paths{end+1} = path;
-            obj.fileFormat{end+1} = format;
-            obj.purpose{end+1} = purpose;
+        function obj = addPath(obj, path, format, purpose, saveScriptName, overwrite)
+            if nargin < 6
+                overwrite = true;
+            end
+            if overwrite
+                idx = obj.getIndexByPurpose(purpose);
+                if isempty(idx)
+                    idx = numel(obj.paths) + 1;
+                end
+            else
+                idx = numel(obj.paths) + 1;
+            end
+            obj.paths{idx} = path;
+            obj.fileFormat{idx} = format;
+            obj.purpose{idx} = purpose;
             if saveScriptName
                 callStack = dbstack;
                 obj.generatedBy{end+1} = callStack(2).file;
