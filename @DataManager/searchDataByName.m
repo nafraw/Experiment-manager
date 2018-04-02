@@ -7,7 +7,11 @@ index = ismember(obj.nameOfData, names);
  end
 if sum(index) < nName
     index_missing = ~ismember(names, obj.nameOfData(index));
-    error(['missing data: ', strjoin(names{index_missing})]);
+    if nName == 1 && ~iscell(names)
+        error(['missing data: ', names]);
+    else
+        error(['missing data: ', strjoin(names{index_missing})]);
+    end
 end
 index = find(index);
 end
