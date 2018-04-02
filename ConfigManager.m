@@ -13,6 +13,11 @@ classdef ConfigManager < handle
             obj.configFiles = [];
         end
         
+        function [parameters, filenameFormat] = runConfigsByContainStr(obj, targetStr)
+            index = find(contains(obj.configFiles, targetStr));
+            [parameters, filenameFormat] = obj.runConfigsByIndex(index);
+        end        
+        
         function [parameters, filenameFormat] = runConfigsByIndex(obj, index)
             parameters = [];
             filenameFormat = [];
