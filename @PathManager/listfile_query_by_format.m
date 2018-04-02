@@ -6,7 +6,7 @@
 % ext is the same argument for classical dir command
 %
 
-function files = listfile_query_by_format(path, ext, verbose, parent_files)
+function files = listfile_query_by_format(obj, path, ext, verbose, parent_files)
 if ~exist('verbose', 'var')
     verbose = false;
 end
@@ -27,7 +27,7 @@ for n = 1:length(names)
         f = fullfile(path, names(n).name);
     end
     if exist(f, 'dir')==7 % directory
-        parent_files = listfile_query_by_format(f, ext, verbose, parent_files);
+        parent_files = obj.listfile_query_by_format(f, ext, verbose, parent_files);
     else % file
         continue;
     end
