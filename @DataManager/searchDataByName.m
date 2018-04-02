@@ -5,7 +5,7 @@ index = ismember(obj.nameOfData, names);
  else
      nName = size(names, 1);
  end
-if sum(index) ~= nName
+if sum(index) < nName
     index_missing = ~ismember(names, obj.nameOfData(index));
     error(['missing data: ', strjoin(names{index_missing})]);
 end
