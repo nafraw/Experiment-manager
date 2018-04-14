@@ -49,6 +49,9 @@ classdef PathManager < handle
         end
         
         function files = getFilesByIndex(obj, indices, substring)
+            if nargin < 3
+                substring = '';
+            end
             nSearch = numel(indices);
             files = cell(nSearch, 1);
             for sIdx = 1: nSearch
