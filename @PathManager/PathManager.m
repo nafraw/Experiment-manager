@@ -128,9 +128,9 @@ classdef PathManager < handle
             obj.purpose{idx} = purpose;
             if saveScriptName
                 callStack = dbstack;
-                obj.generatedBy{end+1} = callStack(2).file;
+                obj.generatedBy{idx} = callStack(2).file;
             else
-                obj.generatedBy{end+1} = '';
+                obj.generatedBy{idx} = '';
             end
         end
     end
