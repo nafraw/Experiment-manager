@@ -1,4 +1,4 @@
 function obj = setDataByName(obj, data, name)
 index = searchDataByName(obj, name);
-obj.setDataByIndex(data, index);
+obj.setDataByIndex(data, index, name);
 end
