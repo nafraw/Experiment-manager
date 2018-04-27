@@ -12,7 +12,7 @@ if sum(index) < nName
         warning(['creating new index for the missing data: ', names]);
         new_index = 1 + numel(obj.data);
     else
-        warning(['creating new index for the missing data: ', strjoin(names{index_missing})]);
+        warning(['creating new index for the missing data: ', strjoin(names(index_missing), ', ')]);
         new_index = 1: numel(index_missing) + numel(obj.data);
     end
 end
