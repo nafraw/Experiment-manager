@@ -1,4 +1,7 @@
-function index = searchDataByName(obj, names)
+function index = searchDataByName(obj, names, add_missing)
+if nargin < 3
+    add_missing = false;
+end
 index = ismember(obj.nameOfData, names);
 new_index = [];
 if iscell(names)
@@ -20,5 +23,7 @@ index = find(index);
 if iscolumn(index)
     index = index';
 end
-index = [index, new_index];
+if add_missing
+    index = [index, new_index];
+end
 end

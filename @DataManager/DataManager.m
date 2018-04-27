@@ -65,7 +65,7 @@ classdef DataManager < handle  % pass by object, otherwise, the data can be too 
         % function obj = saveAccessTime(obj)
         
         %% search methods
-        % function index = searchDataByName(obj, names)
+        % function index = searchDataByName(obj, names, add_missing)
         
         %% data mangement methods
         % function [data, nameOfData, index] = getDataByName(obj, names)        
