@@ -76,8 +76,8 @@ classdef DataManager < handle  % pass by object, otherwise, the data can be too 
         % function obj = addData(obj, data, names, indices, filenames)
         
         %% data processing methods
-       % function obj = setDataByIndex(obj, data, index, name)
-       % function obj = setDataByName(obj, data, name)
+       % function obj = setDataByIndex(obj, data, indices, names, filename)
+       % function obj = setDataByName(obj, data, names, filenames)
        % function obj = applyFunctionToDataByIndex(obj, indices, func)        
        % function obj = applyFunctionToDataByName(obj, names, func)        
        % function obj = applyFunctionToAllData(obj, func)        

@@ -1,4 +1,7 @@
-function obj = setDataByName(obj, data, name)
-index = searchDataByName(obj, name);
-obj.setDataByIndex(data, index, name);
+function obj = setDataByName(obj, data, names, filenames)
+if nargin < 4
+    filenames = [];
+end
+index = searchDataByName(obj, names);
+obj.setDataByIndex(data, index, names, filenames);
 end

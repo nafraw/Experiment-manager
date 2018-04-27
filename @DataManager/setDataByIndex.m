@@ -1,21 +1,26 @@
-function obj = setDataByIndex(obj, data, index, name)
-if nargin < 4
-    name = [];
+function obj = setDataByIndex(obj, data, indices, names, filenames)
+if nargin < 5
+    filenames = [];
 end
-if numel(index) ~= 1
-    obj.data(index) = data;
+if nargin < 4
+    names = [];
+end
+if numel(indices) ~= 1
+    obj.data(indices) = data;
 else
     if iscell(data) && numel(data) == 1 % remove redundant cell
-        obj.data{index} = data{1};
+        obj.data{indices} = data{1};
     else
-        obj.data{index} = data;
+        obj.data{indices} = data;
     end
 end
-if ~isempty(name)
-    if ischar(name)
-        obj.nameOfData{index} = name;
+if ~isempty(names)
+    if ischar(names)
+        obj.nameOfData{indices} = names;
+        obj.filenames{indices} = filenames;
     else
-        obj.nameOfData(index) = name;
+        obj.nameOfData(indices) = names;
+        obj.filenames(indices) = filenames;
     end
 end
 obj.saveAccessTime();
