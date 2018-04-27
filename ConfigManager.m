@@ -15,6 +15,23 @@ classdef ConfigManager < handle
         
         function [parameters, filenameFormat] = runConfigsByContainStr(obj, targetStr)
             index = find(contains(obj.configFiles, targetStr));
+            if iscell(targetStr)
+                if numel(index) ~= numel(targetStr)
+                    miss_index = [];
+                    for i = 1: numel(targetStr)
+                        nContain = sum(contains(obj.configFiles, targetStr{i}));
+                        assert(nContain <= 1);
+                        if nContain == 0
+                            miss_index = [miss_index, i];
+                        end
+                    end
+                    warning(['cannot find a config with the target string: ', strjoin(targetStr(miss_index), ', ')]);
+                end
+            else
+                if numel(index) ~= 1
+                    warning(['cannot find a config with the target string: ', targetStr]);
+                end
+            end
             [parameters, filenameFormat] = obj.runConfigsByIndex(index);
         end        
         
