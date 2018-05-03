@@ -10,11 +10,11 @@ classdef ExperimentManager < handle
     methods
         function obj = ExperimentManager(varargin)
             if nargin < 1
-                cfgMgr = [];
-                pMgr = [];
+                cfgMgr = ConfigManager;
+                pMgr = PathManager;
             elseif nargin < 2
                 cfgMgr = varargin{1};
-                pMgr = [];
+                pMgr = PathManager;
             else
                 cfgMgr = varargin{1};
                 pMgr = varargin{2};
