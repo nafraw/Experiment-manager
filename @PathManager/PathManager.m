@@ -26,7 +26,13 @@ classdef PathManager < handle
         function obj = setDelimiter(obj, delimiter)
             obj.delimiter = delimiter;
         end
-            
+        
+        function files = removeFilesWithTargetStrings(obj, files, targetStr)
+            toRemoveFiles = obj.findTargetStrings(files, targetStr);
+            idxToRemove = ismember(files, toRemoveFiles);
+            files(idxToRemove) = [];
+        end
+        
         function files = findTargetStrings(obj, files, targetStr)
             % can be used to capture the specified subjects for example
             if iscell(targetStr)
