@@ -1,7 +1,11 @@
-function index = searchDataByName(obj, names, add_missing)
+function index = searchDataByName(obj, names, add_missing, surpress_warning)
 if nargin < 3
     add_missing = false;
 end
+if nargin < 4
+    surpress_warning = false;
+end
+
 index = ismember(obj.nameOfData, names);
 new_index = [];
 if iscell(names)
@@ -12,10 +16,14 @@ end
 if sum(index) < nName
     index_missing = ~ismember(names, obj.nameOfData(index));
     if nName == 1 && ~iscell(names)
-        warning(['creating new index for the missing data: ', names]);
+        if ~surpress_warning
+            warning(['creating new index for the missing data: ', names]);
+        end
         new_index = 1 + numel(obj.data);
     else
-        warning(['creating new index for the missing data: ', strjoin(names(index_missing), ', ')]);
+        if ~surpress_warning
+            warning(['creating new index for the missing data: ', strjoin(names(index_missing), ', ')]);
+        end
         new_index = 1: numel(index_missing) + numel(obj.data);
     end
 end
