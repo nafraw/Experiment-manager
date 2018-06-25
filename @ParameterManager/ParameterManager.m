@@ -9,6 +9,17 @@ classdef ParameterManager
         function obj = ParameterManager(fileToLoad)
             assert(~isempty(fileToLoad));
             obj.fileToLoad = fileToLoad;
+            obj.checkFile();
+        end
+        
+        function checkFile(obj)
+            if ~exist(obj.fileToLoad, 'file')
+                subject = [];
+                date = [];
+                expName = [];
+                parameters = [];
+                save(obj.fileToLoad, 'subject', 'date', 'expName', 'parameters');
+            end
         end
         
         function [alreadyDone, par, index] = queryParameters(obj, subjectID, dateOfRecording, ExpName)
