@@ -1,3 +1,5 @@
 function obj = setDateAndID(obj, filename)
-[obj.subjectID, obj.date] = obj.getDateAndID(filename);
+[subjectID, date] = obj.getDateAndID(filename);
+obj.setID(subjectID);
+obj.setDate(date);
 end

@@ -60,6 +60,8 @@ classdef DataManager < handle  % pass by object, otherwise, the data can be too 
         
         %% set subjectID and date
         % function obj = setDateAndID(obj, filename)
+        % function obj = setDate(obj, date)
+        % function obj = setID(obj, subjectID)
         % function obj = setDelimiter(obj, delim)        
         % function [id, date] = getDateAndID(obj, filename)            
         % function obj = saveAccessTime(obj)
