@@ -67,7 +67,7 @@ classdef DataManager < handle  % pass by object, otherwise, the data can be too 
         % function obj = saveAccessTime(obj)
         
         %% search methods
-        % function index = searchDataByName(obj, names, add_missing, surpress_warning)
+        % function index = searchDataByName(obj, names, add_missing, suppress_warning)
         
         %% data mangement methods
         % function [data, nameOfData, index] = getDataByName(obj, names)        
@@ -79,7 +79,7 @@ classdef DataManager < handle  % pass by object, otherwise, the data can be too 
         
         %% data processing methods
        % function obj = setDataByIndex(obj, data, indices, names, filename)
-       % function obj = setDataByName(obj, data, names, filenames, surpress_warning)
+       % function obj = setDataByName(obj, data, names, filenames, suppress_warning)
        % function obj = applyFunctionToDataByIndex(obj, indices, func)        
        % function obj = applyFunctionToDataByName(obj, names, func)        
        % function obj = applyFunctionToAllData(obj, func)        
