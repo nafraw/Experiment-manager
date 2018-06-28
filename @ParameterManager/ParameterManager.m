@@ -49,12 +49,13 @@ classdef ParameterManager
                 subject{index} = subjectID;
                 date{index} = dateOfRecording;
                 expName{index} = ExpName;
+                parameters{index} = par;
             else
                 subject{end+1} = subjectID;
                 date{end+1} = dateOfRecording;
                 expName{end+1} = ExpName;
-            end
-            parameters{end+1} = par;
+                parameters{end+1} = par;
+            end            
             %% save all data
             save(obj.fileToLoad, 'subject', 'date', 'expName', 'parameters');
         end
@@ -68,6 +69,7 @@ classdef ParameterManager
                 subject{index} = [];
                 date{index} = [];
                 expName{index} = [];
+                parameters{index} = [];
             end            
             %% save all data
             save(obj.fileToLoad, 'subject', 'date', 'expName', 'parameters');
