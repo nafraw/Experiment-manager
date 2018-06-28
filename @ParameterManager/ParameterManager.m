@@ -66,10 +66,10 @@ classdef ParameterManager
             [alreadyDone, ~, index] = obj.queryParameters(subjectID, dateOfRecording, ExpName);
             %% append a new one or overwrite
             if alreadyDone
-                subject{index} = [];
-                date{index} = [];
-                expName{index} = [];
-                parameters{index} = [];
+                subject(index) = [];
+                date(index) = [];
+                expName(index) = [];
+                parameters(index) = [];
             end            
             %% save all data
             save(obj.fileToLoad, 'subject', 'date', 'expName', 'parameters');
