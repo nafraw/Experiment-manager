@@ -6,7 +6,8 @@ classdef PathManager < handle
     % Author: Ping-Keng Jao
     % email: ping-keng.jao@epfl.ch
     % 31/03/2018: First version.
-    properties (SetAccess = private, GetAccess = public)
+    %properties (SetAccess = private, GetAccess = public)
+    properties (SetAccess = public, GetAccess = public)
         paths
         fileFormat
         purpose
