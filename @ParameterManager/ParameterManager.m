@@ -33,7 +33,7 @@ classdef ParameterManager
             %% check if already done before
             subjectMask = strcmp(subjectID, subject);
             dateMask = strcmp(dateOfRecording, date);
-            sameExpMask = obj.compreExpName(config_manager, configMan);
+            sameExpMask = obj.compareExpName(config_manager, configMan);
             sameConfigMask = obj.compareConfig(config_manager, configMan);            
             indexSameExp = find(subjectMask & dateMask & sameExpMask);
             indexSameConfig = find(subjectMask & dateMask & sameConfigMask);
@@ -48,22 +48,30 @@ classdef ParameterManager
             end
         end
         
-        function sameExp = compreExpName(obj, configMan, storedConfigMans)
-            sameExp = cellfun(@(x) strcmp(configMan, x), storedConfigMans);
+        function sameExp = compareExpName(obj, configMan, storedConfigMans)
+            if numel(storedConfigMans) == 0
+                sameExp = false;
+            else
+                sameExp = cellfun(@(x) strcmp(configMan.ExpName, x.ExpName), storedConfigMans);
+            end
         end
         
         function sameConfig = compareConfig(obj, configMan, storedConfigMans)
-            sameConfigs = cellfun(@(x) obj.compareConfigFiles(configMan, x), storedConfigMans);
-            sameConfig = sum(sameConfigs, 1) > 0;
+             if numel(storedConfigMans) == 0
+                 sameConfig = false;
+             else
+                sameConfigs = cellfun(@(x) obj.compareConfigFiles(configMan, x), storedConfigMans);
+                sameConfig = sum(sameConfigs, 1) > 0;
+             end
         end
         
         function found = compareConfigFiles(obj, CM1, CM2)            
             found = true;
             for i = 1: numel(obj.configStrs)
-                name1 = getConfigFile(CM1, obj.configStrs{i});
-                name2 = getConfigFile(CM2, obj.configStrs{i});
+                name1 = obj.getConfigFile(CM1, obj.configStrs{i});
+                name2 = obj.getConfigFile(CM2, obj.configStrs{i});
                 assert(~isempty(name1) && ~isempty(name2)); % catch an exception
-                if ~isempty(name1) || ~isempty(name2)
+                if isempty(name1) || isempty(name2)
                     found = false;
                     break;
                 end
