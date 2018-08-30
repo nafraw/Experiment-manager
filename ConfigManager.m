@@ -42,7 +42,8 @@ classdef ConfigManager < handle
         function [parameters, filenameFormat] = runConfigsByIndex(obj, index)
             parameters = [];
             filenameFormat = [];
-            for idx = index
+            disp(['running config file(s): ', strjoin(obj.configFiles(index))]);
+            for idx = index                
                 evalc(['[parameters, filenameFormat{end+1}] = ', obj.configFiles{idx}, '(parameters);']);
             end
             filenameFormat = strjoin(filenameFormat, '_');
