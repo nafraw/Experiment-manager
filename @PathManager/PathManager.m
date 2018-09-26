@@ -79,6 +79,27 @@ classdef PathManager < handle
             files = obj.getFilesByIndex(index, substring);
         end
         
+        function files = deleteFilesByPurpose(obj, purposes, confirm, substring)
+            if nargin < 4
+                substring = '';
+            end
+            files = obj.getFilesByPurpose(purposes, substring);
+            if confirm
+                obj.displayFiles(files);
+                disp('!!!---The above files will be removed...---!!!');
+                disp('!!!---Pree any key to continue or Ctrl+C to terminate---!!!');
+            end
+            for fi = 1:numel(files)
+                delete(files{fi});
+            end
+        end
+        
+        function displayFiles(obj, files)
+            for fi = 1:numel(files)
+                display(files{fi});
+            end
+        end
+        
         function files = getFilesByGeneration(obj, generatedBy, substring)
             if nargin < 3
                 substring = '';
