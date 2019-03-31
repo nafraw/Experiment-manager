@@ -51,6 +51,16 @@ classdef PathManager < handle
             files = files(hasTarget);
         end
         
+        function files = findFilesWithAllTargetStrings(obj, files, targetStr)            
+            assert(iscell(targetStr));
+            hasTarget = cellfun(@(x) contains(files, x), targetStr, 'uniformoutput', false);
+            hasTarget = cat(2, hasTarget{:});
+            hasTarget = sum(hasTarget, 2);
+            hasTarget = hasTarget == numel(targetStr);
+            assert(numel(hasTarget) <= numel(files));
+            files = files(hasTarget);
+        end
+        
         function files = searchFiles(obj, idx)
             files = obj.listfile_query_by_format(obj.paths{idx}, obj.fileFormat{idx}, false);
         end
